@@ -1,0 +1,172 @@
+format PE console
+include 'win32a.inc'
+start:
+macro prntn op1,op2
+{
+local metka
+mov esi,op1
+mov ecx,op2
+mov eax,0
+metka:
+mov eax,[esi]
+push ecx
+cinvoke printf,fmat,eax
+pop ecx
+add esi,4
+loop metka
+}
+
+lea ebx,[A]
+mov [ebx], dword 55229
+mov [ebx+4],dword 53619
+mov [ebx+8],dword 59592
+mov [ebx+12],dword 52862
+
+lea ebx,[B]
+mov [ebx], dword 47291
+mov [ebx+4],dword 46268
+mov [ebx+8],dword 57345
+mov [ebx+12],dword 55857
+
+lea ebx,[C]
+mov [ebx], dword 57847
+mov [ebx+4],dword 40880
+mov [ebx+8],dword 57638
+mov [ebx+12],dword 51866
+mov [ebx+16],dword 47584
+
+
+prntn A,[N]
+prntn B,[N]
+prntn C,[N]
+
+lea eax,[A]
+push eax
+mov eax,[N]
+push eax
+call average
+mov ebx,eax
+
+cinvoke printf, text3,eax
+mov eax,0
+
+lea eax,[B]
+push eax
+mov eax,[N]
+push eax
+call average
+mov ebx,eax
+
+cinvoke printf, text4,eax
+mov eax,0
+
+lea eax,[C]
+push eax
+mov eax,[N]
+push eax
+call average
+mov ebx,eax
+
+cinvoke printf, text5,eax
+
+lea eax,[A]
+push eax
+mov eax,[N]
+push eax
+push ebx
+call save
+
+lea eax,[B]
+push eax
+mov eax,[N]
+push eax
+push ebx
+call save
+
+lea eax,[C]
+push eax
+mov eax,[N]
+push eax
+push ebx
+call save
+
+
+invoke sleep,1000000
+invoke exit,0
+
+proc average
+push ebp
+mov ebp, esp
+push ebx
+push ecx
+mov ecx, [ebp+8]
+mov ebx, [ebp+12]
+xor eax,eax
+xor edi,edi
+jcxz m4
+
+cycln:
+cmp [ebx],esi
+jg m5
+inc edi
+add eax,[ebx]
+m5:
+add ebx,4
+loop cycln
+cdq
+idiv edi
+m4:
+pop ecx
+pop ebx
+pop ebp
+ret 8
+endp
+
+proc save
+push ebp
+mov ebp, esp
+push ebx
+push ecx
+mov edx, [ebp+8]
+mov ecx, [ebp+12]
+mov ebx, [ebp+16]
+jcxz m1
+sev:
+cmp [ebx], dword 0
+jge m2
+mov eax, edx
+mov [ebx], eax
+m2:
+add ebx, 4
+loop sev
+m1:
+pop ecx
+pop ebx
+pop ebp
+ret 12
+endp
+
+A dd 4 dup(?)
+B dd 4 dup(?)
+C dd 5 dup(?)
+N dd 7
+
+text3 db 10,13,'Sredn zp sotrudnika Novikov: %d ',0
+text4 db 10,13,'Sredn zp sotrudnika Korolyev: %d ',0
+text5 db 10,13,'Sredn zp sotrudnika Alekseev: %d ',0
+
+fmat db '%d',9,0
+spp db '%d',0
+; import data in the same section
+data import
+library msvcrt,'MSVCRT.DLL',\
+kernel32,'KERNEL32.DLL'
+import kernel32,\
+sleep,'Sleep'
+import msvcrt,\
+printf,'printf',\
+scanf,'scanf',\
+exit,'exit',\
+setlocale,'setlocale',\
+system,'system'
+end data
