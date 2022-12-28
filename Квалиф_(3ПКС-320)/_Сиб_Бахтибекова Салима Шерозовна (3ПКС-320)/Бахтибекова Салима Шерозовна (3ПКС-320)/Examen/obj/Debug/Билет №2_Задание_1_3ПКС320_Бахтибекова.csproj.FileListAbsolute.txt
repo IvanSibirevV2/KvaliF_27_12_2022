@@ -1,7 +1,0 @@
-D:\source\repos\Examen\Examen\bin\Debug\Examen.exe.config
-D:\source\repos\Examen\Examen\bin\Debug\Examen.exe
-D:\source\repos\Examen\Examen\bin\Debug\Examen.pdb
-D:\source\repos\Examen\Examen\obj\Debug\Билет №2_Задание_1_3ПКС320_Бахтибекова.csproj.AssemblyReference.cache
-D:\source\repos\Examen\Examen\obj\Debug\Билет №2_Задание_1_3ПКС320_Бахтибекова.csproj.CoreCompileInputs.cache
-D:\source\repos\Examen\Examen\obj\Debug\Examen.exe
-D:\source\repos\Examen\Examen\obj\Debug\Examen.pdb

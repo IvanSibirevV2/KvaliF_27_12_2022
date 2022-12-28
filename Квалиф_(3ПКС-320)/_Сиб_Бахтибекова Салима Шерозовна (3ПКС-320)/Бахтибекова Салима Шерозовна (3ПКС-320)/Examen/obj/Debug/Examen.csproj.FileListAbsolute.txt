@@ -1,7 +1,0 @@
-D:\source\repos\Examen\Examen\bin\Debug\Examen.exe.config
-D:\source\repos\Examen\Examen\bin\Debug\Examen.exe
-D:\source\repos\Examen\Examen\bin\Debug\Examen.pdb
-D:\source\repos\Examen\Examen\obj\Debug\Examen.csproj.AssemblyReference.cache
-D:\source\repos\Examen\Examen\obj\Debug\Examen.csproj.CoreCompileInputs.cache
-D:\source\repos\Examen\Examen\obj\Debug\Examen.exe
-D:\source\repos\Examen\Examen\obj\Debug\Examen.pdb
